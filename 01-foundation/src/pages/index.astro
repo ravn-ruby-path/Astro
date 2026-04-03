@@ -1,7 +1,6 @@
 ---
 const name = "Robert";
 const title = "Home page";
-const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -15,6 +14,15 @@ const currentYear = new Date().getFullYear();
 	</head>
 	<body>
 		<h1>{name}</h1>
-		<footer>Año: {currentYear}</footer>
+		<footer></footer>
 	</body>
+
+	<script>
+		const currentYear = new Date().getFullYear();
+		const footer = document.querySelector("footer");
+
+		if (footer) {
+			footer.textContent = `Año: ${currentYear}`;
+		}
+	</script>
 </html>
