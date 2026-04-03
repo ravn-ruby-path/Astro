@@ -1,48 +1,37 @@
 ---
-import MainLayouts from "../layouts/MainLayouts.astro";
+import MainLayout from "../layouts/MainLayouts.astro";
 
-const name = "Robert";
-const title = "Home page";
 // Variables definidas en el servidor antes de renderizar la página.
+const name = "Fernando Alberto Herrera Jiménez";
+const title = "Home Page";
+const currentDate = new Date();
 ---
 
-<MainLayouts title="Home Page">
+<MainLayout title={title}>
   <!-- Título principal visible en la página -->
   <h1>{name}</h1>
 
-  <!-- Este texto se actualiza desde JavaScript cuando la página carga -->
-  <p id="current-time">Momento Actual Real: cargando...</p>
-
   <!-- Este valor se calcula al renderizar el servidor -->
-  <p>
-    Momento Actual al renderizar el servidor: {new Date().toLocaleTimeString()}
-  </p>
+  <p>Momento actual: {currentDate.toLocaleTimeString()}</p>
 
-  <!-- Aquí se escribe el año actual desde el script -->
-  <footer></footer>
-</MainLayouts>
+  <!-- Este texto se actualiza desde JavaScript cuando la página carga -->
+  <p id="current-time">Momento actual real:</p>
 
-<script>
-  // Buscamos el elemento del tiempo para poder cambiar su texto.
-  const timeElement = document.querySelector("#current-time");
+  <script>
+    // Buscamos el párrafo para escribir la hora actual del cliente.
+    const currentTimeParagraph = document.querySelector(
+      "#current-time",
+    ) as HTMLParagraphElement | null;
 
-  // Función que obtiene la hora actual y la muestra en pantalla.
-  const updateTime = () => {
-    if (timeElement) {
-      timeElement.textContent = `Momento Actual: ${new Date().toLocaleTimeString()}`;
-    }
-  };
+    // Función que actualiza la hora real del cliente en pantalla.
+    const updateCurrentTime = () => {
+      if (currentTimeParagraph) {
+        currentTimeParagraph.textContent = `Momento actual real: ${new Date().toLocaleTimeString()}`;
+      }
+    };
 
-  // Mostramos la hora apenas carga la página y luego la actualizamos cada segundo.
-  updateTime();
-  setInterval(updateTime, 1000);
-
-  // Obtenemos el año actual para escribirlo en el footer.
-  const currentYear = new Date().getFullYear();
-  const footer = document.querySelector("footer");
-
-  // Si el footer existe, colocamos el año dentro.
-  if (footer) {
-    footer.textContent = `Año: ${currentYear}`;
-  }
-</script>
+    // Mostramos la hora al cargar y luego la refrescamos cada segundo.
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 1000);
+  </script>
+</MainLayout>
