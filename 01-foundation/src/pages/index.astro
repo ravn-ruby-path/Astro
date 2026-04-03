@@ -1,4 +1,7 @@
 ---
+//server only
+const name = "Robert";
+const title = "Home page";
 
 ---
 
@@ -9,9 +12,9 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Hola Mundo</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<h1>Robert</h1>
+		<h1>{name}</h1>
 	</body>
 </html>
