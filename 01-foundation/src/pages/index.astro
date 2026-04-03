@@ -1,8 +1,7 @@
 ---
-//server only
 const name = "Robert";
 const title = "Home page";
-
+const currentYear = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -16,5 +15,6 @@ const title = "Home page";
 	</head>
 	<body>
 		<h1>{name}</h1>
+		<footer>Año: {currentYear}</footer>
 	</body>
 </html>
